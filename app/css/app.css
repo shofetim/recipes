@@ -1,5 +1,20 @@
 /* app css stylesheet */
 
 body {
-    padding-top: 50px;
+  padding-top: 20px;
+}
+
+.recipes {
+  list-style: none;
+}
+
+.recipes li {
+  clear: both;
+  height: 20px;
+  padding-top: 5px;
+}
+
+/** Detail View **/
+h1 {
+  border-bottom: 1px solid gray;
 }
