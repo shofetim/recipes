@@ -32,6 +32,18 @@ angular.module('recipe.controllers', []).
       ];
       $scope.orderProp = 'name';
   }])
-  .controller('DetailCtrl', ['$scope', function($scope) {
-
+  .controller('DetailCtrl', ['$scope', '$routeParams',
+     function($scope, $routeParams) {
+         $scope.recipe = {
+             'id': 1,
+             'title': 'Mayonnaise',
+             'ingredients': [
+                 '2 egg yolks',
+                 '1 tbsp apple cider vinegar',
+                 '1 tbsp water',
+                 '1/4 tsp unrefined sea salt',
+                 '3/4 cup unrefined extra virgin olive oil'
+             ],
+             'method': 'Toss egg yolks, cider vinegar, water and unrefined sea salt into the basin of a food processor. Pulse 2 or 3 times until well-combined. In a smooth a steady stream, pour in olive oil and continue pouring slowly until the mayonnaise is thoroughly emulsified.'
+         };
   }]);
