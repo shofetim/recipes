@@ -52,7 +52,7 @@ angular.module('recipe.controllers', []).
          $scope.addIngredient = function() {
              $scope.recipe.ingredients.push({'ingredient':''});
          };
-         $scope.removeContact = function(index) {
+         $scope.removeIngredient = function(index) {
              $scope.recipe.ingredients.splice(index, 1);
          };
          $scope.save = function() {
