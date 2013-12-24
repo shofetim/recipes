@@ -31,12 +31,13 @@ var recipes = [
 ];
 
 angular.module('recipe.controllers', []).
-  controller('ListCtrl', ['$scope', function($scope) {
-      $scope.recipes = recipes;
-      $scope.orderProp = 'title';
+    controller('ListCtrl', ['$scope', 'ejsResource', 
+      function($scope, ejsResource) {
+           $scope.recipes = recipes;
+           $scope.orderProp = 'title';
   }])
-  .controller('DetailCtrl', ['$scope', '$routeParams',
-     function($scope, $routeParams) {
+  .controller('DetailCtrl', ['$scope', '$routeParams', 'ejsResource',
+     function($scope, $routeParams, ejsResource) {
          $scope.new = {
              'title': '',
              'ingredients': [
