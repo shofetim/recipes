@@ -19,7 +19,7 @@
     <ul class="recipes">
         <li ng-repeat="recipe in recipes | filter:query | orderBy:orderProp"
             class="phone-listing">
-          <a href="#/recipes/{{recipe.id}}">{{recipe.title}}</a>
+          <a href="#/recipes/{{recipe._id}}">{{recipe._source.title}}</a>
         </li>
     </ul>
 
