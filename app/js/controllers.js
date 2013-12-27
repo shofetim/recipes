@@ -18,16 +18,18 @@ angular.module('recipe.controllers', []).
   .controller('DetailCtrl', ['$scope', '$routeParams', 'ejsResource',
      function($scope, $routeParams, ejsResource) {
          var ejs = ejsResource('http://localhost:9200'); //TODO angularjs.settings?
-         $scope.new = {
-             'title': '',
-             'ingredients': [
-                 {'ingredient': ''},
-                 {'ingredient': ''},
-                 {'ingredient': ''},
-                 {'ingredient': ''},
-                 {'ingredient': ''},
-             ],
-             'method': ''
+         $scope.template = {
+             '_source': {
+                 'title': '',
+                 'ingredients': [
+                     {'ingredient': ''},
+                     {'ingredient': ''},
+                     {'ingredient': ''},
+                     {'ingredient': ''},
+                     {'ingredient': ''},
+                 ],
+                 'method': ''
+             }
          };
          $scope.addIngredient = function() {
              $scope.recipe.ingredients.push({'ingredient':''});
@@ -35,8 +37,13 @@ angular.module('recipe.controllers', []).
          $scope.removeIngredient = function(index) {
              $scope.recipe.ingredients.splice(index, 1);
          };
+         $scope.create = function () {
+             $scope.recipe = angular.copy($scope.template);
+         };
          $scope.save = function() {
-             console.log('implement me');
+             ejs.Document('recipes', 'recipe', $scope.recipe._id)
+                 .source($scope.recipe._source)
+                 .doIndex();
          };
          ejs.Request()
              .indices("recipes")
