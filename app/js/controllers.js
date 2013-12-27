@@ -15,8 +15,9 @@ angular.module('recipe.controllers', []).
               });
           $scope.orderProp = 'title';
   }])
-  .controller('DetailCtrl', ['$scope', '$routeParams', 'ejsResource',
-     function($scope, $routeParams, ejsResource) {
+  .controller('DetailCtrl', ['$scope', '$routeParams', 'ejsResource', 
+                             '$location',
+     function($scope, $routeParams, ejsResource, $location) {
          var ejs = ejsResource('http://localhost:9200'); //TODO angularjs.settings?
          $scope.template = {
              '_source': {
@@ -40,10 +41,20 @@ angular.module('recipe.controllers', []).
          $scope.create = function () {
              $scope.recipe = angular.copy($scope.template);
          };
+         $scope.delete = function () {
+             ejs.Document('recipes', 'recipe', $scope.recipe._id)
+                 .doDelete()
+                 .then(function () {
+                     $location.path('/recipes');
+                 });
+         };
          $scope.save = function() {
              ejs.Document('recipes', 'recipe', $scope.recipe._id)
                  .source($scope.recipe._source)
-                 .doIndex();
+                 .doIndex()
+                 .then(function () {
+                     $location.path('/recipes');
+                 });
          };
          ejs.Request()
              .indices("recipes")
