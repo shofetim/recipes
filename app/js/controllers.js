@@ -9,7 +9,8 @@ angular.module('recipe.controllers', []).
               .indices("recipes")
               .types("recipe")
               .query(ejs.MatchAllQuery())
-              .doSearch(function (data) {
+              .doSearch()
+              .then(function (data) {
                   $scope.recipes = data.hits.hits;
               });
           $scope.orderProp = 'title';
@@ -41,7 +42,8 @@ angular.module('recipe.controllers', []).
              .indices("recipes")
              .types("recipe")
              .filter(ejs.IdsFilter($routeParams['recipeId']))
-             .doSearch(function (data) {
+             .doSearch()
+             .then(function (data) {
                  $scope.recipe = data.hits.hits[0];
              });
   }]);
