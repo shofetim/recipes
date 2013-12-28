@@ -43,6 +43,7 @@ angular.module('recipe.controllers', []).
          };
          $scope.delete = function () {
              ejs.Document('recipes', 'recipe', $scope.recipe._id)
+                 .refresh(true)
                  .doDelete()
                  .then(function () {
                      $location.path('/recipes');
@@ -51,6 +52,7 @@ angular.module('recipe.controllers', []).
          $scope.save = function() {
              ejs.Document('recipes', 'recipe', $scope.recipe._id)
                  .source($scope.recipe._source)
+                 .refresh(true)
                  .doIndex()
                  .then(function () {
                      $location.path('/recipes');
