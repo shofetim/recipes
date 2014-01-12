@@ -33,10 +33,10 @@ angular.module('recipe.controllers', []).
              }
          };
          $scope.addIngredient = function() {
-             $scope.recipe.ingredients.push({'ingredient':''});
+             $scope.recipe._source.ingredients.push({'ingredient':''});
          };
          $scope.removeIngredient = function(index) {
-             $scope.recipe.ingredients.splice(index, 1);
+             $scope.recipe._source.ingredients.splice(index, 1);
          };
          $scope.create = function () {
              $scope.recipe = angular.copy($scope.template);
