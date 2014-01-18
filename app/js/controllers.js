@@ -4,7 +4,7 @@
 angular.module('recipe.controllers', []).
     controller('ListCtrl', ['$scope', 'ejsResource', 
       function($scope, ejsResource) {
-          var ejs = ejsResource('https://es.noionlabs.com'); //TODO angularjs.settings?
+          var ejs = ejsResource('http://es.noionlabs.com'); //TODO angularjs.settings?
           ejs.Request()
               .indices("recipes")
               .types("recipe")
@@ -18,7 +18,7 @@ angular.module('recipe.controllers', []).
   .controller('DetailCtrl', ['$scope', '$routeParams', 'ejsResource', 
                              '$location',
      function($scope, $routeParams, ejsResource, $location) {
-         var ejs = ejsResource('https://es.noionlabs.com'); //TODO angularjs.settings?
+         var ejs = ejsResource('http://es.noionlabs.com'); //TODO angularjs.settings?
          $scope.template = {
              '_source': {
                  'title': '',
