@@ -9,6 +9,9 @@ angular.module('recipe', [
   'recipe.directives',
   'recipe.controllers'
 ]).
+config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
+}]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/recipes', {templateUrl: 'partials/list.html', controller: 'ListCtrl'});
   $routeProvider.when('/recipes/:recipeId', {templateUrl: 'partials/detail.html', controller: 'DetailCtrl'});
